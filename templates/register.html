@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block body %}
+    
+<div class="container col-sm-12 col-md-6 mt-5">
+    <h1>Make a new account!</h1>
+    <hr>
+    <form action="{{ url_for('hello') }}" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail">Username</label>
+            <input type="text" name="username" class="form-control">
+            <label for="exampleInputEmail1" class="pt-3">Email address</label>
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+                >We'll never share your email with anyone else.</small
+            >
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="exampleInputPassword1"
+            />
+        </div>
+        <button type="submit" class="btn btn-primary">Sign up </button>
+    </form>
+</div>
+{% endblock%}

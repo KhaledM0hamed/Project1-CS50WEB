@@ -1,0 +1,20 @@
+{% extends "layout.html"%}
+<!-- head -->
+{% block head %}   
+{% endblock %}
+
+<!-- body  -->
+{% block body %}
+<div class="container search-section col-sm-12">
+    <p>Hello, at booky!</p>
+    <h6>find your favorite book now !</h6>
+    <!-- search form  -->
+    <div class="form-group search">
+        <form action="" method="POST">
+            <input name="bookname" class="form-control col-sm-8 m-auto " type="text">
+            <br>
+            <button class="form-control col-sm-2 m-auto " type="submit"> Search now </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

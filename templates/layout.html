@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+        <title>Booky</title>
+        {% block head %} {% endblock%}
+    </head>
+    <body>
+        <!-- NAVBAR START  -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{{ url_for('index')}}"><img src="{{url_for('static', filename='img/logo1.png')}}"  width="100" height="100" alt="Booky"></a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    {% if session.email %}
+                    <h6 class="nav-item nav-link navfont mr-2">Welcome, {{session.email}}</h6>
+                    <a class="nav-item nav-link font-weight-bold navfont border" href="{{url_for('logout')}}">Log out</a>
+                    {% else %}
+                        <a class="nav-item nav-link navfont" href="{{url_for('login')}}">Log in</a>
+                        <a class="nav-item nav-link font-weight-bold navfont border" href="{{url_for('register')}}">Register</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        <!-- NAVBAR END -->
+        <h6 class="container mt-3 " >{{message}}</h6>
+        {% block body %} {% endblock%}
+        <!-- bootstrap things -->
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js')}}"></script>
+    </body>
+</html>
