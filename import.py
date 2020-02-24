@@ -4,7 +4,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 import csv
 
 
-engine = create_engine("postgres://swgfzukjvgmsew:c987efcfdb9af994e0c497ccb91101b119abe8a91c65d1a4ccc15bd21510c1c9@ec2-184-72-236-3.compute-1.amazonaws.com:5432/d6cbp8fk0b634n")
+engine = create_engine(DATABASE_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
 f = open("books.csv")
