@@ -2,9 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
 
+@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto+Mono&display=swap');
+
 body{
     background-color: #A2C8E8;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto Mono', ; 
     font-weight: bolder;
 }
 
@@ -26,4 +28,19 @@ p{
 
 .navfont{
     font-size: 25px;
+}
+/* 
+font-family: 'Oswald', ;
+font-family: 'Roboto Mono', ; */
+.book_content{
+    padding: 25px;
+    /* margin: 10px; */
+}
+.details{
+    
+    font-family: 'Roboto Mono', ;
+    font-size: 25px !important;
+}
+.details_title{
+    font-family: 'Oswald';
 }

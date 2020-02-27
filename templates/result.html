@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="list-group container mt-4 ">
+    {% for result in results %}
+    <a href="{{url_for('book',book = result[1])}}" class="list-group-item list-group-item-action">{{result[2]}}</a>
+    {% endfor %}
+</div>
+    {% endblock %}

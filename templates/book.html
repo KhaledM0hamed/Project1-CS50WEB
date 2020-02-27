@@ -1,0 +1,94 @@
+{% extends "layout.html"%} {% block body%}
+<!-- book details section -->
+<div class="container book_content">
+    <div class="row">
+        <h1 class="col-md-12 text-center">{{result[2]}}</h1>
+        <div class="col-md-6 text-left border-left mt-2">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <td>ISBN:</td>
+                        <td>{{result[1]}}</td>
+                    </tr>
+                    <tr>
+                        <td>Author:</td>
+                        <td>{{result[3]}}</td>
+                    </tr>
+                    <tr>
+                        <td>publication year</td>
+                        <td>{{result[4]}}</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-md-6 text-left border-left mt-2">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <td>The average rating:</td>
+                        <td>{{jsonAPI['books'][0]['average_rating']}}</td>
+                    </tr>
+                    <tr>
+                        <td>The number of ratings:</td>
+                        <td>{{jsonAPI['books'][0]['work_ratings_count']}}</td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- comment your review and rate section  -->
+<div class="container ">
+    <div class="row ">
+        <div class="comment col-md-12 text-center">
+            <form action="" method="POST">
+                <div class="row">
+                    <textarea placeholder="we will be happy to know your review here!" name="comment" rows="2" class="form-control col-md-9 "></textarea>
+                    <button type="submit" class="btn btn-primary col-md-2 ml-2 text-center">Send</button>
+                </div>
+                <div class="pl-3 text-left">
+                    <label class="col-md-2">your rate:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="entered_rate" id="inlineRadio1" value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="entered_rate" id="inlineRadio2" value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="entered_rate" id="inlineRadio2" value="3">
+                        <label class="form-check-label" for="inlineRadio2">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="entered_rate" id="inlineRadio2" value="4">
+                        <label class="form-check-label" for="inlineRadio2">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="entered_rate" id="inlineRadio2" value="5">
+                        <label class="form-check-label" for="inlineRadio2">5</label>
+                    </div>
+                    
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- reviews section  -->
+<div class="container mt-5">
+    {% for review in reviews%}
+    <div class="row alert alert-dark">
+        <div class="col-md-8">
+            <h6>{{review[2]}} says:</h6>
+        </div>
+        <div class="col-md-4 text-right">
+            <h6>rate: {{review[4]}}</h6>
+        </div>
+        <div class="col-md-12 text-center">
+                <h5>{{review[3]}}</h5>
+        </div>
+    </div>
+    {% endfor%}
+</div>
+{% endblock%}

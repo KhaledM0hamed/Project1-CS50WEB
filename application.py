@@ -32,7 +32,7 @@ def index():
     if request.method == "POST":
         if session.get("email") is not None:
             bookname = request.form.get("bookname")
-            return redirect("/"+bookname)
+            return redirect("/search/"+bookname)
         else:
             return render_template("index.html", message=" please login first")
     else:
@@ -82,6 +82,16 @@ def hello():
         done = "false" 
     return render_template("hello.html", done=done)
 
+# search result 
+@app.route("/search/<book>")
+def search_result(book):
+    books_query = "SELECT * FROM books WHERE isbn LIKE :isbn OR title LIKE :title OR author LIKE :author"
+    results = db.execute(books_query, {"isbn" : book+'%', "title": book+'%', "author": book+'%'}).fetchall()
+    
+    return render_template("result.html", results= results, book= book)
+
+
+
 # book 
 @app.route("/<book>", methods=["POST", "GET"])
 def book(book):
@@ -123,6 +133,17 @@ def logout():
 def api(isbn):
     try:
         query = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
+        reviews = db.execute("SELECT * FROM reviews WHERE book_id = :book_id",{"book_id": str(query[0]) }).fetchall()
+        rate_sum = 0
+        review_count = 0
+        for review in reviews:
+            review_count = review_count + 1
+        for review in reviews:
+            rate_sum = review[4] + rate_sum
+        if isbn == query[1]:
+            average_score = rate_sum / (review_count)
+            return jsonify({"title":query[2], "author":query[3], "year":query[4], "isbn":isbn, "review_count": review_count , "average_score":average_score })
+        
     except:
         return jsonify({"error": "Invalid isbn"}), 422
     # get_book_id = db.execute("SELECT * FROM books")

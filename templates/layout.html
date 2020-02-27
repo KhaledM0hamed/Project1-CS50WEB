@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
                     {% if session.email %}
-                    <h6 class="nav-item nav-link navfont mr-2">Welcome, {{session.email}}</h6>
+                    <h6 class="nav-item nav-link navfont mr-2">Welcome, {{session.username}}</h6>
                     <a class="nav-item nav-link font-weight-bold navfont border" href="{{url_for('logout')}}">Log out</a>
                     {% else %}
                         <a class="nav-item nav-link navfont" href="{{url_for('login')}}">Log in</a>
@@ -36,7 +36,9 @@
             </div>
         </nav>
         <!-- NAVBAR END -->
-        <h6 class="container mt-3 " >{{message}}</h6>
+        {% if message %}
+        <div class="alert alert-primary container mt-2" >{{message}}</div>
+        {% endif %}
         {% block body %} {% endblock%}
         <!-- bootstrap things -->
         <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
